@@ -39,28 +39,3 @@ jobs:
         IBM_APP_NAME: ${{ secrets.IBM_APP_NAME }}
       run: |
         ./IBM_Cloud_CLI/ibmcloud cf restart "$IBM_APP_NAME"
-        
-
-    - name: Login IBM Cloud2
-      env:
-        IBM_ACCOUNT: ${{ secrets.IBM_ACCOUNT2 }}
-        REGION_NUM: ${{ secrets.REGION_NUM2 }}
-      run: |
-        ./IBM_Cloud_CLI/ibmcloud login <<EOF
-        $IBM_ACCOUNT
-        $REGION_NUM
-        no
-        EOF
-    - name: Target IBM Cloud2
-      env:
-        RESOURSE_ID: ${{ secrets.RESOURSE_ID2 }}
-      run: |
-        ./IBM_Cloud_CLI/ibmcloud target -g "$RESOURSE_ID"
-        ./IBM_Cloud_CLI/ibmcloud target --cf
-        ./IBM_Cloud_CLI/ibmcloud cf install -f -v 6.15.0
-    - name: Restart IBM Cloud2
-      env:
-        IBM_APP_NAME: ${{ secrets.IBM_APP_NAME2 }}
-      run: |
-        ./IBM_Cloud_CLI/ibmcloud cf restart "$IBM_APP_NAME"
-
